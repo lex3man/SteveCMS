@@ -1,0 +1,2 @@
+#DjangoCMS
+For bot content
