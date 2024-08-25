@@ -30,6 +30,7 @@ class SMAdmin(admin.ModelAdmin):
             },
         ),
     )
+    list_filter = ['state', 'user_status', "new_state", "new_status"]
 
 @admin.register(Trigger)
 class TriggersAdmin(admin.ModelAdmin):
