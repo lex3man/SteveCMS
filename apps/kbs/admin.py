@@ -5,6 +5,7 @@ from apps.kbs.models import Button, Keyboard
 @admin.register(Keyboard)
 class KeyboardAdmin(admin.ModelAdmin):
     list_display = ('caption', 'type')
+    list_filter = ['type']
 
 @admin.register(Button)
 class ButtonAdmin(admin.ModelAdmin):

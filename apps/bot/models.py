@@ -41,14 +41,16 @@ class State(models.Model):
         return self.caption
 
 class StaticMessages(models.Model):
-    caption = models.CharField(verbose_name="Наименование", max_length=50, default='Сообщение', unique=True)
-    text = models.TextField(verbose_name="Текст сообщения")
-    keyboard = models.ForeignKey(Keyboard, verbose_name="Клавиатура", on_delete=models.SET_NULL, null=True)
-    delay = models.IntegerField(verbose_name='Задержка перед отправкой', default=0)
-    state = models.ForeignKey(State, verbose_name='Состояние', on_delete=models.SET_NULL, null=True)
-    user_status = models.ForeignKey(UserStatus, verbose_name='Статус', on_delete=models.SET_NULL, null=True)
-    trigger = models.ForeignKey(Trigger, verbose_name='Тригер', on_delete=models.SET_NULL, null=True)
-    auto_next = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
+    caption = models.CharField(verbose_name="Наименование*", max_length=50, default='Сообщение', unique=True)
+    text = models.TextField(verbose_name="Текст сообщения", null=True, blank=True)
+    keyboard = models.ForeignKey(Keyboard, verbose_name="Клавиатура", on_delete=models.SET_NULL, null=True, blank=True)
+    delay = models.IntegerField(verbose_name='Задержка перед отправкой*', default=0)
+    state = models.ForeignKey(State, verbose_name='Состояние*', on_delete=models.SET_NULL, null=True)
+    user_status = models.ForeignKey(UserStatus, verbose_name='Статус*', on_delete=models.SET_NULL, null=True)
+    trigger = models.ForeignKey(Trigger, verbose_name='Тригер', on_delete=models.SET_NULL, null=True, blank=True)
+    auto_next = models.ForeignKey('self', verbose_name="Автопереход к сообщению", null=True, blank=True, on_delete=models.SET_NULL)
+    new_state = models.ForeignKey(State, verbose_name="Новое состояние", related_name="new_state", on_delete=models.SET_NULL, null=True, blank=True)
+    new_status = models.ForeignKey(UserStatus, verbose_name="Новый статус", related_name="new_status", on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Ответ'
