@@ -26,5 +26,6 @@ admin.site.site_title = 'Bot Content Managment System'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('messages/', views.messages_list),
+    path('messages/', views.all_messages_list),
+    path('messages/<state>', views.state_messages_list),
 ]
