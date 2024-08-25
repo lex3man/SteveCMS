@@ -17,7 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from apps.bot import views
+
+admin.site.site_header = 'Администрирование бота'
+admin.site.index_title = 'Система менеджмента сообщений'
+admin.site.site_title = 'Bot Content Managment System'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('messages/', views.messages_list),
 ]
