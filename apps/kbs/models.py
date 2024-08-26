@@ -21,7 +21,7 @@ class Button(models.Model):
     callback = models.CharField(verbose_name="CallBack от кнопки (инлайн клавиатура)", max_length=50, null=True, blank=True)
     row = models.IntegerField(verbose_name="Строка", default=0)
     range = models.IntegerField(verbose_name="Порядок", default=0)
-    kb = models.ForeignKey(Keyboard, verbose_name="Клавиатура", on_delete=models.SET_NULL, null=True)
+    kb = models.ForeignKey(Keyboard, related_name='buttons', verbose_name="Клавиатура", on_delete=models.SET_NULL, null=True)
 
     class Meta:
         verbose_name = 'Кнопка'
